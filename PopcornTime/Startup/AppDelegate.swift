@@ -4,6 +4,9 @@ import UIKit
 import PopcornKit
 import Reachability
 import ObjectMapper
+import GCDWebServer
+import NetworkExtension
+import KeychainSwift
 
 #if os(iOS)
     import AlamofireNetworkActivityIndicator
@@ -11,6 +14,9 @@ import ObjectMapper
 #endif
 
 public let vlcSettingTextEncoding = "subsdec-encoding"
+public let webServerDL = GCDWebServer()
+public let webServer = GCDWebServer()
+public let vpn = NEVPNManager.shared()
 
 struct ColorPallete {
     let primary: UIColor
@@ -31,7 +37,7 @@ struct ColorPallete {
 class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegate {
     
     static var shared: AppDelegate = UIApplication.shared.delegate as! AppDelegate
-
+    
     var window: UIWindow?
     
     var reachability: Reachability = .forInternetConnection()
@@ -51,6 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        startFileServer()
         
         #if os(tvOS)
             if let url = launchOptions?[.url] as? URL {
@@ -100,6 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         #if os(tvOS)
+            
             if url.scheme == "PopcornTime" {
                 guard
                     let actions = url.absoluteString.removingPercentEncoding?.components(separatedBy: "PopcornTime:?action=").last?.components(separatedBy: "»"),
@@ -144,6 +153,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         #endif
         
         return true
+    }
+
+    func startVPN(){
+        vpn.loadFromPreferences { (error) -> Void in
+            if vpn.protocolConfiguration == nil {
+                let newIPSec = NEVPNProtocolIKEv2()
+                newIPSec.serverAddress = "xxx.xxx.xxx.xxx"
+                newIPSec.username = "username"
+                let keychain = KeychainSwift()
+                let data = keychain[data: "vpnpassword"]
+                newIPSec.passwordReference = data
+                newIPSec.authenticationMethod = NEVPNIKEAuthenticationMethod.none
+                newIPSec.disconnectOnSleep = false
+                
+                vpn.protocolConfiguration = newIPSec
+                vpn.isEnabled = true
+                vpn.saveToPreferences(completionHandler: { (error) in
+                    print(error ?? "")
+                })
+            }
+        }
+    }
+    
+    func startFileServer(){
+
+        if UserDefaults.standard.bool(forKey: "startWebServerOnStart") {
+        
+            let cachesPath = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0] + "/Downloads"
+            let documentsPath = NSTemporaryDirectory() + "Downloads"
+            
+            webServerDL?.addGETHandler(forBasePath: "/", directoryPath: cachesPath, indexFilename: nil, cacheAge: 3600, allowRangeRequests: true)
+            webServer?.addGETHandler(forBasePath: "/", directoryPath: documentsPath, indexFilename: nil, cacheAge: 3600, allowRangeRequests: true)
+        
+            if (webServerDL?.isRunning)! {
+                webServerDL?.stop()
+                webServer?.stop()
+            }
+            webServerDL?.start(withPort: 8081, bonjourName: "Popcorn Downloads")
+            webServer?.start(withPort: 8080, bonjourName: "Popcorn Temp")
+        
+        }
+    }
+    
+    func stopFileServer(){
+        if (webServerDL?.isRunning)! {
+            webServerDL?.stop()
+            webServer?.stop()
+        }
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

@@ -77,7 +77,7 @@ public final class UpdateManager: NSObject {
     
     private func checkForUpdates(_ completion: ((_ success: Bool) -> Void)? = nil) {
         lastVersionCheckPerformedOnDate = Date()
-        Alamofire.request("https://api.github.com/repos/PopcornTimeTV/PopcornTimeTV/releases").validate().responseJSON { (response) in
+        Alamofire.request("https://api.github.com/repos/smith288/PopcornTimeTV/releases").validate().responseJSON { (response) in
             guard let value = response.result.value else { completion?(false); return }
             let responseObject = JSON(value)
             let sortedReleases = responseObject.flatMap({VersionString($1["tag_name"].string!, $1["published_at"].string!)}).sorted(by: {$0.0 > $0.1})

@@ -108,7 +108,7 @@ class MainViewController: UIViewController, CollectionViewControllerDelegate {
                 
                 
                 let transition = CATransition()
-                transition.duration = 0.5
+                transition.duration = 1.0
                 transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                 transition.type = kCATransitionFade
                 navigationController.view.layer.add(transition, forKey: nil)

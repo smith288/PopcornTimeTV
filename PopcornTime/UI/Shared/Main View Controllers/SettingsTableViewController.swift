@@ -1,6 +1,7 @@
 
 
 import UIKit
+import GCDWebServer.GCDWebServerFunctions
 import class PopcornKit.TraktManager
 import class PopcornKit.UpdateManager
 import protocol PopcornKit.TraktManagerDelegate
@@ -74,8 +75,12 @@ class SettingsTableViewController: UITableViewController, TraktManagerDelegate {
             } else if indexPath.row == 5 {
                 cell.detailTextLabel?.text = subtitleSettings.encoding
             }
-        case 2 where indexPath.row == 0:
-            cell.detailTextLabel?.text = TraktManager.shared.isSignedIn() ? "Sign Out".localized : "Sign In".localized
+        case 2:
+            if indexPath.row == 0 {
+                cell.detailTextLabel?.text = TraktManager.shared.isSignedIn() ? "Sign Out".localized : "Sign In".localized
+            } else if indexPath.row == 1 {
+                cell.detailTextLabel?.text = UserDefaults.standard.bool(forKey: "startWebServerOnStart") ? "On".localized : "Off".localized
+            }
         case 3:
             if indexPath.row == 1 {
                 var date = "Never".localized
@@ -285,21 +290,40 @@ class SettingsTableViewController: UITableViewController, TraktManagerDelegate {
                 
                 present(alertController, animated: true)
             }
-        case 2 where indexPath.row == 0 :
-            if TraktManager.shared.isSignedIn() {
-                let alert = UIAlertController(title: "Sign Out".localized, message: "Are you sure you want to Sign Out?".localized, preferredStyle: .alert)
+        case 2:
+            if indexPath.row == 0 {
+                if TraktManager.shared.isSignedIn() {
+                    let alert = UIAlertController(title: "Sign Out".localized, message: "Are you sure you want to Sign Out?".localized, preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: { action in
+                        do { try TraktManager.shared.logout() } catch { }
+                        tableView.reloadData()
+                    }))
+                    alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
+                    present(alert, animated: true)
+                } else {
+                    TraktManager.shared.delegate = self
+                    let vc = TraktManager.shared.loginViewController()
+                    present(vc, animated: true)
+                }
+            } else if indexPath.row == 1 {
+                let value = UserDefaults.standard.bool(forKey: "startWebServerOnStart")
+                UserDefaults.standard.set(!value, forKey: "startWebServerOnStart")
+                tableView.reloadData()
                 
-                alert.addAction(UIAlertAction(title: "Sign Out".localized, style: .destructive, handler: { action in
-                    do { try TraktManager.shared.logout() } catch { }
-                    tableView.reloadData()
-                }))
-                alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
-                present(alert, animated: true)
-            } else {
-                TraktManager.shared.delegate = self
-                let vc = TraktManager.shared.loginViewController()
-                present(vc, animated: true)
+                if !value {
+                    let ipddr = GCDWebServerGetPrimaryIPAddress(false)
+                    
+                    let alert = UIAlertController(title: "Web Server".localized, message: String(format:"Web Server will serve Downloaded files on port %@:8081 and On Demand videos on %@:8080".localized,ipddr!, ipddr!), preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK".localized, style: .destructive, handler: nil))
+                    present(alert, animated: true)
+                    AppDelegate.shared.startFileServer()
+                } else {
+                    AppDelegate.shared.stopFileServer()
+                }
+            
             }
+            
         case 3:
             if indexPath.row == 0 {
                 let controller = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
