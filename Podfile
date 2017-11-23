@@ -14,7 +14,6 @@ def pods
     pod 'MarqueeLabel/Swift', '~> 3.0.3'
     pod 'ObjectMapper', '~> 2.2.7'
     pod 'GCDWebServer', '~> 3.3.3'
-    pod 'KeychainSwift', '~> 8.0.0'
 end
 
 target 'PopcornTimeiOS' do
@@ -24,7 +23,7 @@ target 'PopcornTimeiOS' do
     pod 'google-cast-sdk', '~> 3.4.0'
     pod 'OBSlider', '~> 1.1.1'
     pod '1PasswordExtension', '~> 1.8.4'
-    pod 'MobileVLCKit-unstable', '~> 3.0.0a24'
+    pod 'MobileVLCKit-unstable', '~> 3.0.0a44'
 end
 
 target 'PopcornTimetvOS' do

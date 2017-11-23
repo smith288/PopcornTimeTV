@@ -5,8 +5,7 @@ import PopcornKit
 import Reachability
 import ObjectMapper
 import GCDWebServer
-import NetworkExtension
-import KeychainSwift
+import Alamofire
 
 #if os(iOS)
     import AlamofireNetworkActivityIndicator
@@ -16,7 +15,6 @@ import KeychainSwift
 public let vlcSettingTextEncoding = "subsdec-encoding"
 public let webServerDL = GCDWebServer()
 public let webServer = GCDWebServer()
-public let vpn = NEVPNManager.shared()
 
 struct ColorPallete {
     let primary: UIColor
@@ -59,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         startFileServer()
-        
+                
         #if os(tvOS)
             if let url = launchOptions?[.url] as? URL {
                 return self.application(.shared, open: url)
@@ -154,27 +152,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         
         return true
     }
-
-    func startVPN(){
-        vpn.loadFromPreferences { (error) -> Void in
-            if vpn.protocolConfiguration == nil {
-                let newIPSec = NEVPNProtocolIKEv2()
-                newIPSec.serverAddress = "xxx.xxx.xxx.xxx"
-                newIPSec.username = "username"
-                let keychain = KeychainSwift()
-                let data = keychain[data: "vpnpassword"]
-                newIPSec.passwordReference = data
-                newIPSec.authenticationMethod = NEVPNIKEAuthenticationMethod.none
-                newIPSec.disconnectOnSleep = false
-                
-                vpn.protocolConfiguration = newIPSec
-                vpn.isEnabled = true
-                vpn.saveToPreferences(completionHandler: { (error) in
-                    print(error ?? "")
-                })
-            }
-        }
-    }
     
     func startFileServer(){
 
@@ -206,6 +183,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+        #if os(tvOS)
+        Alamofire.request("http://192.168.1.6:8085/vpnoff")
+        #endif
     }
     
     func applicationDidEnterBackground(_ application: UIApplication) {

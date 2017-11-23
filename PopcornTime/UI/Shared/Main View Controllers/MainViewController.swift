@@ -4,6 +4,8 @@ import UIKit
 import PopcornKit
 import PopcornTorrent.PTTorrentDownloadManager
 import MediaPlayer.MPMediaItem
+import Alamofire
+import SwiftyJSON
 
 class MainViewController: UIViewController, CollectionViewControllerDelegate {
     
@@ -39,6 +41,8 @@ class MainViewController: UIViewController, CollectionViewControllerDelegate {
             navigationController?.navigationBar.isBackgroundHidden = false
         #endif
         navigationController?.navigationBar.tintColor = .app
+        
+        
     }
     
     override dynamic func viewDidAppear(_ animated: Bool) {
@@ -53,6 +57,9 @@ class MainViewController: UIViewController, CollectionViewControllerDelegate {
         collectionView?.updateFocusIfNeeded()
         
         collectionView?.reloadData()
+        #if os(tvOS)
+        checkVPN()
+        #endif
     }
 
     override dynamic func viewDidLoad() {
@@ -148,4 +155,24 @@ class MainViewController: UIViewController, CollectionViewControllerDelegate {
             vc.currentItem = person
         }
     }
+    
+    func checkVPN(){
+        URLCache.shared.removeAllCachedResponses()
+        Alamofire.request("http://192.168.1.6:8085/vpnstatus")
+            .responseJSON { response in
+                if response.data != nil {
+                    let json = JSON(data: response.data!)
+                    let vpn = json["vpn"]
+                    if vpn != true {
+                        
+                        Alamofire.request("http://192.168.1.6:8085/vpnon")
+                        
+                        let alert = UIAlertController(title: "VPN Not running!".localized, message: "VPN Service not detected! Will try to start VPN.".localized, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK".localized, style: .destructive, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                }
+        }
+    }
+    
 }

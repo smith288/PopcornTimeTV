@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="13196" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vnN-Md-ybv">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="13770" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="vnN-Md-ybv">
     <device id="appleTV" orientation="landscape">
         <adaptation id="dark"/>
     </device>
     <dependencies>
-        <deployment identifier="tvOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13770"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -960,7 +959,7 @@
         <scene sceneID="dzk-7B-9vQ">
             <objects>
                 <collectionViewController id="DA7-H9-B5o" customClass="DescriptionCollectionViewController" customModule="PopcornTime" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Yvl-X0-OXH">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="Yvl-X0-OXH">
                         <rect key="frame" x="0.0" y="0.0" width="745" height="380"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="L4r-Mu-bZw">
@@ -1148,7 +1147,7 @@
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Qb-cW-DB9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <collectionViewController storyboardIdentifier="CollectionViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9uQ-LP-RR8" customClass="CollectionViewController" customModule="PopcornTime" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" id="GGp-VC-hgJ">
+                    <collectionView key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" delaysContentTouches="NO" dataMode="prototypes" id="GGp-VC-hgJ">
                         <rect key="frame" x="0.0" y="0.0" width="1920" height="875"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="30" minimumInteritemSpacing="48" id="dAV-Fa-e8x">
@@ -1158,7 +1157,7 @@
                             <inset key="sectionInset" minX="90" minY="60" maxX="90" maxY="60"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="movieCell" id="AZv-vb-h4b" customClass="CoverCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="movieCell" id="AZv-vb-h4b" customClass="CoverCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
                                 <rect key="frame" x="90" y="149" width="250" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1216,7 +1215,7 @@
                                     <segue destination="nn7-tP-fW3" kind="show" identifier="showMovie" customClass="AutoPlayStoryboardSegue" customModule="PopcornTime" customModuleProvider="target" id="frE-FE-cwN"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="showCell" id="8YZ-pV-UrP" customClass="CoverCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="showCell" id="8YZ-pV-UrP" customClass="CoverCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
                                 <rect key="frame" x="388" y="149" width="250" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1274,7 +1273,7 @@
                                     <segue destination="nn7-tP-fW3" kind="show" identifier="showShow" customClass="AutoPlayStoryboardSegue" customModule="PopcornTime" customModuleProvider="target" id="J2o-2Q-WCT"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="personCell" id="dgY-nR-jAJ" customClass="MonogramCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="personCell" id="dgY-nR-jAJ" customClass="MonogramCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
                                 <rect key="frame" x="686" y="149" width="250" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1342,7 +1341,7 @@
                                     <segue destination="9lQ-BL-a1K" kind="show" identifier="showPerson" id="Uc8-MJ-jNm"/>
                                 </connections>
                             </collectionViewCell>
-                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="downloadCell" id="LsM-ig-9Rp" customClass="DownloadCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="downloadCell" id="LsM-ig-9Rp" customClass="DownloadCollectionViewCell" customModule="PopcornTime" customModuleProvider="target">
                                 <rect key="frame" x="984" y="149" width="250" height="460"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -1869,11 +1868,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="f8x-Ym-rQl" detailTextLabel="Aud-tf-JFq" style="IBUITableViewCellStyleValue1" id="kJS-hT-WnH">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="f8x-Ym-rQl" detailTextLabel="Aud-tf-JFq" style="IBUITableViewCellStyleValue1" id="kJS-hT-WnH">
                                         <rect key="frame" x="0.0" y="833" width="640" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kJS-hT-WnH" id="ldq-w5-55A">
-                                            <rect key="frame" x="0.0" y="0.0" width="640" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="860" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Encoding" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f8x-Ym-rQl">
@@ -1884,7 +1883,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Windows-1252" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Aud-tf-JFq">
-                                                    <rect key="frame" x="368" y="10" width="252" height="46"/>
+                                                    <rect key="frame" x="588" y="10" width="252" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                     <nil key="textColor"/>
@@ -1897,11 +1896,11 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Services" id="Oi2-SE-DcW">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="fV7-sD-Mxl" detailTextLabel="g7o-mr-G5l" style="IBUITableViewCellStyleValue1" id="qwj-oV-YgU">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="fV7-sD-Mxl" detailTextLabel="g7o-mr-G5l" style="IBUITableViewCellStyleValue1" id="qwj-oV-YgU">
                                         <rect key="frame" x="0.0" y="1026" width="640" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qwj-oV-YgU" id="S07-eB-z3r">
-                                            <rect key="frame" x="0.0" y="0.0" width="640" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="844" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Trakt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fV7-sD-Mxl">
@@ -1912,7 +1911,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Sign In" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g7o-mr-G5l">
-                                                    <rect key="frame" x="507" y="10" width="113" height="46"/>
+                                                    <rect key="frame" x="711" y="10" width="113" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                     <nil key="textColor"/>
@@ -1921,11 +1920,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="wl3-zp-TOv" detailTextLabel="YNS-tP-z3P" style="IBUITableViewCellStyleValue1" id="sKl-UT-df8">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="wl3-zp-TOv" detailTextLabel="YNS-tP-z3P" style="IBUITableViewCellStyleValue1" id="sKl-UT-df8">
                                         <rect key="frame" x="0.0" y="1106" width="640" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sKl-UT-df8" id="LK7-O1-FIJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="640" height="66"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="844" height="66"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Web Server" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="wl3-zp-TOv">
@@ -1936,7 +1935,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="On" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YNS-tP-z3P">
-                                                    <rect key="frame" x="571" y="10" width="49" height="46"/>
+                                                    <rect key="frame" x="775" y="10" width="49" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="38"/>
                                                     <nil key="textColor"/>
@@ -2073,7 +2072,7 @@
                                 <rect key="frame" x="90" y="290" width="499" height="730"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="mzE-eL-bmL" detailTextLabel="yub-Sq-VPX" style="IBUITableViewCellStyleValue1" id="9fA-bC-rsP">
+                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="mzE-eL-bmL" detailTextLabel="yub-Sq-VPX" style="IBUITableViewCellStyleValue1" id="9fA-bC-rsP">
                                         <rect key="frame" x="0.0" y="66" width="499" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9fA-bC-rsP" id="njN-WZ-tLx">
@@ -2158,7 +2157,7 @@
                                 <rect key="frame" x="100" y="145" width="956" height="875"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="wy0-bN-qn6" customClass="DownloadDetailTableViewCell" customModule="PopcornTime" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" misplaced="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="wy0-bN-qn6" customClass="DownloadDetailTableViewCell" customModule="PopcornTime" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="80" width="956" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wy0-bN-qn6" id="Akk-pg-Mcl">
